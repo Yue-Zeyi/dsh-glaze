@@ -19,6 +19,7 @@
 - 🌗 **跟随亮/暗主题** — 切换主题时背景遮罩与界面底色自动适配
 
 ---
+<img width="778" height="772" alt="image" src="https://github.com/user-attachments/assets/be69335c-3cf3-46c9-8bc6-c754c14e8f11" />
 
 ## 快速开始
 
