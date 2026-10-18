@@ -19,6 +19,7 @@ harness/shots/
 harness/state/
 harness/logs/
 
+
 # python caches (tools/ experiments)
 __pycache__/
 *.pyc
@@ -27,5 +28,5 @@ __pycache__/
 *.log
 
 # local history backup of the v0.1 client (kept on disk only)
-plugin/client.js.v1-bak
+client.js.v1-bak
 

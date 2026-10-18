@@ -15,7 +15,7 @@ what the page actually contains.
 cd C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze\harness
 
 # 1. start a throwaway instance with the skin plugin mounted (returns in ~6 s)
-.\start-test-instance.ps1 -PluginPath "C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze\plugin"
+.\start-test-instance.ps1 -PluginPath "C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze"
 
 # 2. screenshot it (7 PNGs + state JSON + console log)
 .\capture.ps1
@@ -186,9 +186,9 @@ Everything below was run against the real, running installation.
    mounted.
 
 2. **Plugin proof.** The same flow with
-   `-PluginPath …\dsh-glaze\plugin` mounted `dsh-glaze` (bundle layer inserts row id
+   `-PluginPath …\dsh-glaze` mounted `dsh-glaze` (bundle layer inserts row id
    `dsh-glaze`; profile's `dependencies` gains
-   `"dsh-glaze": "link:C:/…/dsh-glaze/plugin"`). `capture.ps1 -Steps all` then
+   `"dsh-glaze": "link:C:/…/dsh-glaze"`). `capture.ps1 -Steps all` then
    produced `shots\skin-01…07-*.png` with **zero** console errors and **zero**
    non-2xx responses.
 

@@ -52,11 +52,11 @@ npm view dsh-glaze version   # 现在返回 404 = 名字空着
 
 ## 3. 发布前自检
 
-在 `plugin/` 目录：
+在**仓库根目录**：
 
 ```powershell
 # a) 静态与导入期检查（CSS 模板完整性 + factory 真跑一遍）
-node ../tools/smoke-client.mjs
+node tools/smoke-client.mjs
 
 # b) Host 半边单元测试
 node test-host.mjs
@@ -76,7 +76,7 @@ LICENSE  README.md  preview.png  client.js  index.js  cordis.patch.yml  icon.svg
 `prepublishOnly` 已经配好，`npm publish` 时会自动先跑测试 —— **测试不过就发布不出去**：
 
 ```json
-"prepublishOnly": "node test-host.mjs && node --check index.js && node --check client.js && node ../tools/smoke-client.mjs"
+"prepublishOnly": "node test-host.mjs && node --check index.js && node --check client.js && node tools/smoke-client.mjs"
 ```
 
 ---
@@ -160,24 +160,27 @@ npm unpublish dsh-glaze --force                            # 删整包，慎用
 
 ## 8. 仓库与文档
 
-建议把整个仓库推到 GitHub（`plugin/` 保持在子目录里也行）：
+把整个仓库推到 GitHub 即可（包就在仓库根，这样别人才能直接用仓库地址安装）：
 
 ```
 dsh-glaze/
-├── plugin/          ← 包本体（package.json 在这里）
-│   ├── README.md    ← npm 页面显示这个
-│   ├── preview.png
-│   ├── LICENSE
-│   ├── index.js     Host 半边
-│   ├── client.js    客户端半边
-│   └── cordis.patch.yml
-├── docs/
+├── package.json     ← 包清单（必须在仓库根，git 安装就靠它）
+├── index.js         Host 半边
+├── client.js        客户端半边
+├── cordis.patch.yml 配置行 patch
+├── README.md        ← npm 页面与 GitHub 首页显示这个
+├── preview.png
+├── LICENSE
+├── icon.svg
+├── test-host.mjs
+├── docs/            ← 不发布
 │   ├── PUBLISH.md   （本文件）
 │   ├── INSTALL.md
+│   ├── TECHNICAL.md
 │   └── contract-spec.md
 ├── tools/           ← 发布前自检脚本，不发布
 ├── harness/         ← 测试实例驱动，不发布
-└── screenshots/
+└── screenshots/     ← 不发布
 ```
 
 `package.json` 里已经填好：
@@ -212,7 +215,7 @@ bugs        https://github.com/Yue-Zeyi/dsh-glaze/issues
 [ ] npm whoami 确认登录、开了 2FA
 [ ] npm view dsh-glaze 返回 404（名字还空着）
 [ ] repository / homepage / bugs 指向真实仓库
-[ ] node ../tools/smoke-client.mjs 通过
+[ ] node tools/smoke-client.mjs 通过
 [ ] node test-host.mjs 通过
 [ ] npm pack --dry-run 清单里没有 harness/ tools/ screenshots/
 [ ] README 里的安装步骤和当前配置字段一致（没有已删除的选项）

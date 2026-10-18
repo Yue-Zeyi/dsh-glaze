@@ -9,7 +9,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const file = new URL('../plugin/package.json', import.meta.url)
+const file = new URL('../package.json', import.meta.url)
 const pkg = JSON.parse(readFileSync(file, 'utf8'))
 
 // Identity — matches the GitHub account that owns the other dsh-* package.
@@ -26,7 +26,7 @@ pkg.publishConfig = { access: 'public' }
 // test lives outside `files`, but prepublishOnly runs in the source tree.
 pkg.scripts = {
   ...pkg.scripts,
-  prepublishOnly: 'node test-host.mjs && node --check index.js && node --check client.js && node ../tools/smoke-client.mjs',
+  prepublishOnly: 'node test-host.mjs && node --check index.js && node --check client.js && node tools/smoke-client.mjs',
 }
 
 // The licence text has to travel with the package.

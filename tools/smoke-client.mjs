@@ -16,7 +16,7 @@
 import { readFileSync } from 'node:fs'
 import assert from 'node:assert/strict'
 
-const src = readFileSync(new URL('../plugin/client.js', import.meta.url), 'utf8')
+const src = readFileSync(new URL('../client.js', import.meta.url), 'utf8')
 
 // ── 1. the CSS template must close where the stylesheet ends ─────────────────
 // Count backticks starting at the opening line and stop at the first closer:

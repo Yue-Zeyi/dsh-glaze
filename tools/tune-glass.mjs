@@ -9,7 +9,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const file = new URL('../plugin/client.js', import.meta.url)
+const file = new URL('../client.js', import.meta.url)
 let s = readFileSync(file, 'utf8')
 
 // Structural columns: 12%..70% -> 8%..52% so the wallpaper reads as a real

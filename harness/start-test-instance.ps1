@@ -54,7 +54,7 @@
     .\start-test-instance.ps1
 
 .EXAMPLE
-    .\start-test-instance.ps1 -PluginPath "C:\...\dsh-glaze\plugin"
+    .\start-test-instance.ps1 -PluginPath "C:\...\dsh-glaze"
 #>
 [CmdletBinding()]
 param(

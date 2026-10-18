@@ -8,7 +8,7 @@
  */
 import { readFileSync } from 'node:fs'
 
-const lines = readFileSync(new URL('../plugin/client.js', import.meta.url), 'utf8').split('\n')
+const lines = readFileSync(new URL('../client.js', import.meta.url), 'utf8').split('\n')
 
 const start = lines.findIndex((line) => line.includes('const CSS = '))
 if (start === -1) {

@@ -8,7 +8,7 @@
  */
 import { readFileSync } from 'node:fs'
 
-const src = readFileSync(new URL('../plugin/client.js', import.meta.url), 'utf8')
+const src = readFileSync(new URL('../client.js', import.meta.url), 'utf8')
 
 // Minimal React stand-in: enough for the factory body to reach the throw.
 const react = {

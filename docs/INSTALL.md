@@ -1,6 +1,6 @@
 # 安装与启用
 
-> 本文是给**已经拿到 `plugin/` 目录**的人的安装步骤。
+> 本文是给**已经拿到这个仓库**的人的安装步骤。包本体就在仓库根目录。
 > 功能说明见 [../README.md](../README.md)。
 
 ## 当前状态（本机）
@@ -9,7 +9,7 @@
 
 | 项目 | 值 |
 |---|---|
-| 插件位置 | `C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze\plugin` |
+| 插件位置 | `C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze` |
 | profile | `C:\Users\Administrator\.dsh\profiles\desktop` |
 | `node_modules\dsh-glaze` | Junction → 插件目录（软链，不复制） |
 | `package.json` | `dsh.profile.bundles` 含 `dsh-glaze`；`dependencies` 含 `link:...` |
@@ -42,7 +42,7 @@
 ## 从零安装到另一个 profile
 
 ```powershell
-$pluginDir = 'C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze\plugin'
+$pluginDir = 'C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze'
 $profile   = "$env:USERPROFILE\.dsh\profiles\desktop"
 
 # 1) package.json：加入 bundle 与 link 依赖

@@ -9,7 +9,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const here = new URL('../plugin/', import.meta.url)
+const here = new URL('../', import.meta.url)
 const read = (name) => readFileSync(new URL(name, here), 'utf8')
 const write = (name, text) => writeFileSync(new URL(name, here), text)
 

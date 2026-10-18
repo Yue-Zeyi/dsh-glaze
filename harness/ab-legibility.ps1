@@ -42,7 +42,7 @@ param(
     ),
     [string]$HomeDir = (Join-Path $env:TEMP 'dsh-glaze-harness\home'),
     [string]$ProfileName = 'skin-test',
-    [string]$PluginPath = 'C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze\plugin',
+    [string]$PluginPath = 'C:\Users\Administrator\Documents\deepseek-harness\default-workspace\dsh-glaze',
     [int]$Port = 59821,
     [string]$PlaywrightRoot = 'C:\Users\Administrator\.dsh\profiles\desktop\node_modules'
 )

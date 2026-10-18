@@ -59,7 +59,7 @@
   "scripts": {
     "test": "node test-host.mjs",
     "check": "node --check index.js && node --check client.js",
-    "prepublishOnly": "node test-host.mjs && node --check index.js && node --check client.js && node ../tools/smoke-client.mjs"
+    "prepublishOnly": "node test-host.mjs && node --check index.js && node --check client.js && node tools/smoke-client.mjs"
   },
   "author": "YueZeyi",
   "repository": {

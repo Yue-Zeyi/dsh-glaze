@@ -636,7 +636,7 @@ non-empty once a third-party theme or `ctx.theme.overrideTokens()` is used), plu
 sizes/families. Inline styles beat any `<style>`/stylesheet rule. That is why the skin's
 dynamic alpha must also be written as **body inline custom properties**, re-derived on each
 `theme/change` (next section) — exactly the plan already encoded in
-`dsh-glaze/plugin/client.js`'s header comment. `ctx.theme.overrideTokens(...)` is the
+`dsh-glaze/client.js`'s header comment. `ctx.theme.overrideTokens(...)` is the
 sanctioned alternative: it stacks a token layer that the presenter itself applies
 (`ROOT/dsh-client-ui-theme/lib/client.js:1835`, `overrideTokens(source, tokens)`, values must
 be `{light, dark}` pairs).
