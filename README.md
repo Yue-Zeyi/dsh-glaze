@@ -6,6 +6,8 @@
 
 ![预览](./preview.png)
 
+<img width="778" height="772" alt="实际效果" src="https://github.com/user-attachments/assets/be69335c-3cf3-46c9-8bc6-c754c14e8f11" />
+
 ## 特点
 
 - **自定义背景图** — PNG / JPEG / WebP / GIF / AVIF / BMP / SVG，单张最大 32 MB，只存在本机
