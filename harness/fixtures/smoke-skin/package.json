@@ -1,0 +1,16 @@
+{
+  "name": "dsh-glaze-smoke-fixture",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Harness self-test: minimal custom-skin plugin (client-only). Paints a visible watermark and header accent so a screenshot proves plugin mount.",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "immediately": true }
+  }
+}

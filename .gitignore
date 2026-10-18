@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# published tarballs
+*.tgz
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local test-harness output.
+# `harness/shots` holds hundreds of captured screenshots from debugging
+# sessions, some of which are full-desktop grabs (they can contain unrelated
+# windows and private content). `state` and `logs` are per-run artefacts.
+# Only the harness SCRIPTS are tracked.
+harness/shots/
+harness/state/
+harness/logs/
+
+# python caches (tools/ experiments)
+__pycache__/
+*.pyc
+
+# logs
+*.log
+
+# local history backup of the v0.1 client (kept on disk only)
+plugin/client.js.v1-bak
+

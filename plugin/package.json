@@ -1,0 +1,76 @@
+{
+  "name": "dsh-glaze",
+  "version": "0.14.0",
+  "type": "module",
+  "description": "Glaze for DeepSeek Harness: your own wallpaper behind a real frosted-glass interface, with opacity, blur, veil and a frost switch.",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "harness-plugin",
+    "glaze",
+    "frosted-glass",
+    "wallpaper",
+    "background",
+    "translucent",
+    "theme"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.4",
+    "@deepseek-ai/schemastery": "^3.18.5"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "test-host.mjs",
+    "LICENSE",
+    "README.md",
+    "preview.png"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "node test-host.mjs",
+    "check": "node --check index.js && node --check client.js",
+    "prepublishOnly": "node test-host.mjs && node --check index.js && node --check client.js && node ../tools/smoke-client.mjs"
+  },
+  "author": "YueZeyi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yue-Zeyi/dsh-glaze.git"
+  },
+  "homepage": "https://github.com/Yue-Zeyi/dsh-glaze#readme",
+  "bugs": {
+    "url": "https://github.com/Yue-Zeyi/dsh-glaze/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

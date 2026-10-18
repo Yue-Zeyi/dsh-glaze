@@ -1,0 +1,14 @@
+# Keep text files LF in the repository so the working tree is identical on
+# Windows, macOS and Linux. Screenshots stay binary.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.tgz binary
+
+# PowerShell scripts are LF-safe on Windows PowerShell 5.1 and PowerShell 7+.
+*.ps1 text eol=lf

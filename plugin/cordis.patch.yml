@@ -1,0 +1,43 @@
+# dsh-glaze bundle patch: inserts the Host half of the skin plugin.
+#
+# The Host half owns:
+#   - the wallpaper image store (upload / read / clear) under $DSH_HOME/dsh-glaze/
+#   - the HTTP routes the browser half consumes:
+#       GET    /dsh-glaze/state    -> { present, revision, mime, name, bytes }
+#       GET    /dsh-glaze/image    -> the stored wallpaper bytes
+#       POST   /dsh-glaze/upload   -> store a new wallpaper (raw image body)
+#       DELETE /dsh-glaze/image    -> clear the wallpaper
+#   - the persisted preference config below, written by the Settings page
+#     through the normal Host settings seam (so it survives restarts).
+#
+# The browser half (client.js) is declared by package.json's dsh.client.
+#
+# Every config field is declared `.volatile()` in index.js's Config schema.
+# That is what makes the Host settings seam project it into an editable form
+# and what makes the running plugin see live edits; drop it and the control
+# silently stops persisting.
+- insert:
+    - id: dsh-glaze
+      name: dsh-glaze
+      config:
+        # Show the wallpaper at all. Turning it off keeps your saved image and
+        # values so you can toggle the skin without re-picking anything.
+        enabled: true
+        # Real frosted glass: blur what is behind the interface. Turn it off to
+        # keep a plain translucent tint instead (no blur pass at all — cheaper,
+        # and it cannot show blur seams or banding).
+        frosted: true
+        # 0..100: opacity of the UI surfaces stacked over the wallpaper.
+        # 100 = the stock, fully opaque look; lower lets the image through.
+        opacity: 35
+        # 0..60 px: backdrop blur behind the translucent surfaces.
+        blur: 22
+        # 0..100: palette-coloured veil between wallpaper and UI. This is the
+        # readability control; raise it for busy or bright wallpapers.
+        scrim: 10
+        # 0..100: extra black veil on top, independent of the palette.
+        dim: 0
+        # cover | contain | auto | repeat
+        fit: cover
+        # center | top | bottom | left | right
+        position: center

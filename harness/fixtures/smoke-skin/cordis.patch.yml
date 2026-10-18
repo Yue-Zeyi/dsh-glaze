@@ -1,0 +1,4 @@
+# Bundle layer of the smoke fixture: mount the client half only.
+- insert:
+    - id: dsh-glaze-smoke-fixture
+      name: 'dsh-glaze-smoke-fixture'
