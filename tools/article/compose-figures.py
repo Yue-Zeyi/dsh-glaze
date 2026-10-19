@@ -116,10 +116,12 @@ scrim = scrim.filter(ImageFilter.GaussianBlur(24))
 cover = Image.composite(Image.new("RGB", (COVER_W, COVER_H), (14, 16, 28)), band, scrim)
 
 cd = ImageDraw.Draw(cover)
-cd.text((78, 132), "dsh-glaze", font=font(112), fill=(255, 255, 255))
-cd.text((82, 288), "给你的 DeepSeek Harness", font=font(52), fill=(240, 242, 250))
-cd.text((82, 356), "上一层玻璃釉", font=font(52), fill=(156, 200, 255))
-cd.text((84, 466), "自定义壁纸  ·  真毛玻璃  ·  开源 MIT", font=font(32), fill=(202, 208, 226))
+cd.text((78, 104), "dsh-glaze", font=font(106), fill=(255, 255, 255))
+cd.text((82, 246), "给你的 DeepSeek Harness", font=font(47), fill=(240, 242, 250))
+cd.text((82, 304), "上一层玻璃釉", font=font(47), fill=(156, 200, 255))
+cd.text((84, 392), "自定义壁纸  ·  真毛玻璃  ·  开源 MIT", font=font(30), fill=(202, 208, 226))
+# The hook of the story: this plugin was built by Harness itself, on V4.1-Flash.
+cd.text((84, 458), "用 DeepSeek Harness × DeepSeek-V4.1-Flash 写成", font=font(27), fill=(255, 214, 160))
 cover.save(IMAGES / "cover.png", optimize=True)
 print("cover.png", cover.size)
 
