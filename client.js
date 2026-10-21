@@ -373,6 +373,7 @@ html.${ROOT_CLASS} [role='dialog'] {
       '--dsh-glaze-pane-fill',
       '--dsh-glaze-card-fill',
       '--dsh-glaze-dialog-fill',
+      '--dsh-glaze-divider',
     ])
 
     /**
@@ -657,6 +658,31 @@ html.${ROOT_CLASS} [role='dialog'] {
      */
     let lastSelectors = ''
 
+    /**
+     * The shell's left sidebar column, as an element.
+     *
+     * Identified structurally (first full-height child of the frame that starts
+     * at the left edge and is narrower than the main area), because the package's
+     * class names are CSS-module hashes.
+     *
+     * @returns the element, or null when the sidebar is collapsed/absent.
+     */
+    function findSidebarColumn() {
+      const root = document.getElementById('root')
+      const frame = root?.firstElementChild?.querySelector(':scope > *') ?? null
+      if (frame === null) return null
+      const vw = window.innerWidth || 1280
+      const vh = window.innerHeight || 800
+      for (const el of frame.children) {
+        const rect = el.getBoundingClientRect()
+        if (rect.left > 2) continue
+        if (rect.height < vh * 0.9) continue
+        if (rect.width < 140 || rect.width > vw * 0.45) continue
+        return el
+      }
+      return null
+    }
+
     function syncClearSheet() {
       if (typeof document === 'undefined') return
       if (!runtime.settings.enabled) {
@@ -665,9 +691,25 @@ html.${ROOT_CLASS} [role='dialog'] {
         return
       }
       const selectors = findOpaqueContainers()
-      const key = selectors.join('|')
+
+      // The divider between the sidebar and the main area.
+      //
+      // The shell draws one (`border-right: 1px solid rgba(0,0,0,.12)`) and it
+      // reads fine on a light background — measured as a 19/255 luminance dip —
+      // but on the dark theme that same 12% black line sits on dark glass and
+      // disappears completely (measured dip: 0.03). Meanwhile the RIGHT dock's
+      // divider is a LIGHT hairline (+40 luminance).
+      //
+      // So the left divider is re-declared here with a theme-aware colour
+      // (`--dsh-glaze-divider`, set from paint()), which keeps the light theme
+      // pixel-identical and gives the dark theme the matching light hairline.
+      const sidebar = findSidebarColumn()
+      const sidebarSelector = sidebar === null ? null : structuralSelector(sidebar)
+
+      const key = selectors.join('|') + '#' + (sidebarSelector ?? '')
       if (key === lastSelectors) return
       lastSelectors = key
+
       const rules = []
       for (const selector of selectors) {
         const scoped = `html.${ROOT_CLASS} ${selector}`
@@ -676,6 +718,11 @@ html.${ROOT_CLASS} [role='dialog'] {
         // container behind it is transparent, that opaque endpoint becomes a
         // hard-edged coloured strip. Drop the veil's gradient instead.
         rules.push(`${scoped} [class*='fade'] { background-image: none !important; }`)
+      }
+      if (sidebarSelector !== null) {
+        rules.push(
+          `html.${ROOT_CLASS} ${sidebarSelector} { border-right: 1px solid var(--dsh-glaze-divider, rgba(0, 0, 0, 0.12)) !important; }`,
+        )
       }
       clearSheet().textContent = rules.join('\n')
     }
@@ -971,6 +1018,19 @@ html.${ROOT_CLASS} [role='dialog'] {
         body.style.setProperty('--dsh-glaze-pane-fill', colours.base)
         body.style.setProperty('--dsh-glaze-card-fill', colours.layer)
         body.style.setProperty('--dsh-glaze-dialog-fill', colours.layer)
+
+        // Column divider colour.
+        //
+        // The shell's own divider is a 12% BLACK hairline. On the light theme
+        // that is exactly right (measured 19/255 luminance dip), so it is kept
+        // pixel-identical there. On the dark theme the same line lands on dark
+        // glass and vanishes (dip 0.03), while the right dock's divider is a
+        // LIGHT hairline (+40). Mirroring that here makes the two sides match.
+        const isDark = body.hasAttribute('data-ds-dark-theme')
+        body.style.setProperty(
+          '--dsh-glaze-divider',
+          isDark ? 'rgba(255, 255, 255, 0.20)' : 'rgba(0, 0, 0, 0.12)',
+        )
 
         // FROST TOGGLE.
         //

@@ -1,6 +1,6 @@
 {
   "name": "dsh-glaze",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "type": "module",
   "description": "Glaze for DeepSeek Harness: your own wallpaper behind a real frosted-glass interface, with opacity, blur, veil and a frost switch.",
   "license": "MIT",
